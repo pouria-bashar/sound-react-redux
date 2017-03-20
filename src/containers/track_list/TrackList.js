@@ -8,22 +8,34 @@ const Container = styles.div`
   display: flex;
   flex-wrap: wrap;
 `;
+const NotFoundContainer = styles.div`
+  color: tomato;
+`;
+
 
 class TrackList extends Component {
   static propTypes = {
     tracks: PropTypes.object.isRequired,
+    setSelectedTrack: PropTypes.func.isRequired,
+    getTracks: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
     this.props.getTracks();
   }
   handleClick(id) {
-    console.log(id);
     this.props.setSelectedTrack(id);
   }
   render() {
     const { tracks: { items } } = this.props;
     if (!items) return null;
+    if (items.length < 1) {
+      return (
+        <NotFoundContainer>
+          Could not find any matching results
+        </NotFoundContainer>
+      );
+    }
     return (
       <Container>
         {
