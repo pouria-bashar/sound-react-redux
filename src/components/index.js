@@ -1,2 +1,1 @@
-export Bar from './Bar';
-export ButtonsController from './ButtonsController';
+export Track from './track/Track';

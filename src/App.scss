@@ -1,10 +1,8 @@
 @import "./styleGuide.scss";
 
-.container {
-  @extend .testBackground;
-  margin: 0 auto;
-  max-width: 600px;
-  padding: 10px;
+.app {
+  margin: 90px auto;
+  max-width: 900px;
 }
 
 :global {

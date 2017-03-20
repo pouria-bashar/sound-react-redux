@@ -44,6 +44,8 @@ module.exports = {
       utils: process.cwd() + '/src/utils',
       components: process.cwd() + '/src/components',
       containers: process.cwd() + '/src/containers',
+      actionTypes: process.cwd() + '/src/actions/actionTypes',
+      actions: process.cwd() + '/src/actions',
     },
   },
 };

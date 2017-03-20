@@ -37,7 +37,8 @@
     "react/no-did-mount-set-state": 0,
     "react/no-unescaped-entities": 0,
     "react/no-unused-prop-types": [2, { "skipShapeProps": true }],
-    "react/prefer-stateless-function": 0
+    "react/prefer-stateless-function": 0,
+    "linebreak-style": "off",
   },
   "plugins": [
     "react"
