@@ -1,7 +1,7 @@
 {
-  "name": "raiss-boilerplate",
+  "name": "sound-react-redux",
   "version": "0.0.1",
-  "description": "minimal react boiler plate",
+  "description": "soundlcloud player",
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src",
@@ -42,7 +42,12 @@
   "dependencies": {
     "axios": "0.15.3",
     "lodash": "4.16.6",
+    "material-ui": "^0.17.1",
     "react": "15.3.2",
-    "react-dom": "15.3.2"
+    "react-dom": "15.3.2",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^1.4.4"
   }
 }
