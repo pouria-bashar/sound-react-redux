@@ -65,7 +65,7 @@ class Track extends Component {
       <Card>
         <Header>
           <Image
-            src={track.artwork_url}
+            src={track.artwork_url || 'http://static.wixstatic.com/media/66f565_accf5eba3a454753965146f53e83ae4a.png_256'}
             alt="Smiley face"
           />
           <Link href={track.artwork_url}>{track.title}</Link>
