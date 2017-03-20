@@ -14,14 +14,7 @@ export default class SoundCloudApiClinet {
    * -----------------API methods---------------------
    */
 
-  getInitialTracks() {
-    const queryParam = '?q=tiesto';
-    const url = apiPaths.search + queryParam;
-    return this.getClient().get(url);
-  }
-
-
-  searchTracks(q) {
+  getTracks(q) {
     const queryParam = `?q=${q}`;
     const url = apiPaths.search + queryParam;
     return this.getClient().get(url);

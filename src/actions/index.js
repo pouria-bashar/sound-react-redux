@@ -1,1 +1,1 @@
-export { getTracks } from './SoundCloudActions';
+export { getTracks, setSelectedTrack } from './SoundCloudActions';

@@ -3,11 +3,10 @@ import React, { Component, PropTypes } from 'react';
 import styles from 'styled-components';
 
 const Card = styles.div`
-  border: solid 1px;
-  margin: 0 5px 5px 5px;
-  flex-basis: 20%;
+  flex-basis: 25%;
   min-width: 200px;
   padding: 10px;
+  margin-bottom: 20px;
 `;
 const Header = styles.div`
   font-size: 16px;
@@ -41,6 +40,8 @@ const Link = styles.a`
 `;
 const Image = styles.img`
   margin-bottom: 20px;
+  height: 100px;
+  width: 100px;
 `;
 
 const PlaybackButton = styles.button`
@@ -51,10 +52,11 @@ const PlaybackButton = styles.button`
 class Track extends Component {
   static propTypes = {
     track: PropTypes.object.isRequired,
+    onClick: PropTypes.func.isRequired,
   }
   handleClick() {
     const { track } = this.props;
-
+    this.props.onClick(track.id);
   }
   render() {
     const { track } = this.props;
@@ -62,7 +64,10 @@ class Track extends Component {
     return (
       <Card>
         <Header>
-          <Image src={track.artwork_url} />
+          <Image
+            src={track.artwork_url}
+            alt="Smiley face"
+          />
           <Link href={track.artwork_url}>{track.title}</Link>
         </Header>
         <Divider />

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getTracks } from 'actions';
+import { getTracks, setSelectedTrack } from 'actions';
 import styles from 'styled-components';
 import { Track } from 'components';
 
@@ -17,13 +17,17 @@ class TrackList extends Component {
   componentDidMount() {
     this.props.getTracks();
   }
+  handleClick(id) {
+    console.log(id);
+    this.props.setSelectedTrack(id);
+  }
   render() {
     const { tracks: { items } } = this.props;
     if (!items) return null;
     return (
       <Container>
         {
-          items.map((item, index) => <Track track={item} key={index} />)
+          items.map((item, index) => <Track track={item} key={index} onClick={::this.handleClick} />)
         }
       </Container>
     );
@@ -32,4 +36,4 @@ class TrackList extends Component {
 function mapStateToProps({ tracks }) {
   return { tracks };
 }
-export default connect(mapStateToProps, { getTracks })(TrackList);
+export default connect(mapStateToProps, { getTracks, setSelectedTrack })(TrackList);
