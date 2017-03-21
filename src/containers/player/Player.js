@@ -8,18 +8,23 @@ const Container = styles.div`
   bottom:0;
   width: 100%;
   height: 77px;
-  background-color: #333;
+  background-color: rgb(113, 111, 111);
 `;
-const Inputs = styles.div`
+const Wrapper = styles.div`
   margin: 0 auto;
   text-align: center;
-  padding: 20px;
+  display: flex;
+  width: 900px;
+`;
+const Image = styles.img`
+  margin-right: 20px;
 `;
 class Player extends Component {
   static propTypes = {
     selectedTrack: PropTypes.object.isRequired,
   };
   componentDidUpdate() {
+    if (!this.audio) return;
     const { selectedTrack } = this.props;
     if (selectedTrack.isPlaying) {
       this.audio.play();
@@ -30,12 +35,12 @@ class Player extends Component {
 
   render() {
     const { selectedTrack: { track } } = this.props;
+    if (!track) return null;
     return (
       <Container>
-        <Inputs>
-          <button>Play</button>
-          <button>Pause</button>
-        </Inputs>
+        <Wrapper>
+          <Image src={track.artwork_url} />
+        </Wrapper>
         <audio ref={(c) => { this.audio = c; }} src={`${track.stream_url}?client_id=e582b63d83a5fb2997d1dbf2f62705da`} id="audio" />
       </Container>
     );

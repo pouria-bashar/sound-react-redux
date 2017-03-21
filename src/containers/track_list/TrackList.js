@@ -5,17 +5,24 @@ import styles from 'styled-components';
 import { Track } from 'components';
 
 const Container = styles.div`
-  display: flex;
-  flex-wrap: wrap;
+
 `;
 const NotFoundContainer = styles.div`
   color: tomato;
 `;
-
+const Row = styles.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  &:last-child{
+    
+  }
+`;
 
 class TrackList extends Component {
   static propTypes = {
     tracks: PropTypes.object.isRequired,
+    selectedTrack: PropTypes.object.isRequired,
     setSelectedTrack: PropTypes.func.isRequired,
     selectedTrackIsPalying: PropTypes.func.isRequired,
     getTracks: PropTypes.func.isRequired,
@@ -40,17 +47,29 @@ class TrackList extends Component {
         </NotFoundContainer>
       );
     }
+    const itemsCopy = items.slice(0);
+    const rows = [];
+    const size = 4;
+    while (itemsCopy.length > 0) rows.push(itemsCopy.splice(0, size));
+
     return (
       <Container>
         {
-          items.map((item, index) => (
-            <Track
-              track={item}
-              key={index}
-              onPlayClick={::this.handlePlayClick}
-              onPauseClick={::this.handlePauseClick}
-              isPlaying={selectedTrack.isPlaying && selectedTrack.track.id === item.id}
-            />))
+          rows.map((row, index) => (
+            <Row key={index}>
+              {
+                row.map(item => (
+                  <Track
+                    track={item}
+                    key={item.id}
+                    onPlayClick={::this.handlePlayClick}
+                    onPauseClick={::this.handlePauseClick}
+                    isPlaying={selectedTrack.isPlaying && selectedTrack.track.id === item.id}
+                  />
+                ))
+              }
+            </Row>
+          ))
         }
       </Container>
     );

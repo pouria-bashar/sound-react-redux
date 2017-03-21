@@ -26,7 +26,6 @@ export function getTracks(q = '') {
     try {
       const response = await client.getTracks(q);
       dispatch({ type: GET_TRACKS_COMPLETED, payload: response.data });
-      dispatch({ type: SET_SELECTED_TRACK, payload: response.data[0].id });
     } catch (error) {
       dispatch({ type: GET_TRACKS_FAILED, error: error.message });
     }

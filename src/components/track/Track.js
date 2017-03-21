@@ -4,16 +4,20 @@ import styles from 'styled-components';
 
 
 const Card = styles.div`
-  flex-basis: 25%;
+  flex-basis: 23%;
   min-width: 200px;
   padding: 10px;
   margin-bottom: 20px;
+  border: solid 1px;
+  &:last-child {
+    border-right: solid 1px;
+  }
 `;
 const Header = styles.div`
   font-size: 16px;
   max-width: 100px;
-  text-align: center;
   position: relative;
+  margin: 0 auto;
 `;
 const Link = styles.a`
   display: block;
@@ -27,6 +31,20 @@ const Image = styles.img`
   margin-bottom: 20px;
   height: 100px;
   width: 100px;
+`;
+const Divider = styles.div`
+  margin: 1rem 0;
+  line-height: 1;
+  height: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: rgba(0,0,0,.85);
+  user-select: none;
+  user-select: none;
+  font-size: 1rem;
+  border-top: 1px solid rgba(34,36,38,.15);
+  border-bottom: 1px solid rgba(255,255,255,.1);
 `;
 
 const Overlay = styles.div`
@@ -94,6 +112,7 @@ class Track extends Component {
           </Overlay>
           <Link href={track.artwork_url}>{track.title}</Link>
         </Header>
+        <Divider />
       </Card>
     );
   }
