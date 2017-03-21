@@ -6,7 +6,7 @@ const config = {
     baseURL: 'https://api.soundcloud.com',
     timeout: 4000,
     params: {
-      client_id: 'e582b63d83a5fb2997d1dbf2f62705da',
+      client_id: 'JgzOqV010cyD0lmG9NWTYAFRpBofLwRC',
       limit: 50,
     },
   },

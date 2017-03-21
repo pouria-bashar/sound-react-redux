@@ -108,7 +108,8 @@ class Track extends Component {
           />
           <Overlay showOverlay={isPlaying}>
             <OverlayButton
-              onClick={isPlaying ? ::this.handlePauseClick : ::this.handlePlayClick}>
+              onClick={isPlaying ? ::this.handlePauseClick : ::this.handlePlayClick}
+            >
               <p>{isPlaying ? 'Pause' : 'Play'}</p>
             </OverlayButton>
           </Overlay>

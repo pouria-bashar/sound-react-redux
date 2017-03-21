@@ -8,29 +8,23 @@ const Container = styles.div`
   position: fixed;
   bottom:0;
   width: 100%;
-  height: 100px;
+  height: 150px;
   background: #1b1c1d;
 `;
-const Wrapper = styles.div`
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  width: 900px;
-`;
-const Image = styles.img`
-  margin-right: 20px;
-`;
+
 class Player extends Component {
   static propTypes = {
     selectedTrack: PropTypes.object.isRequired,
   };
   componentDidUpdate() {
-    if (!this.audio) return;
+    if (!this.soundCoudFrame) return;
     const { selectedTrack } = this.props;
+
+    const widget = window.SC.Widget(this.soundCoudFrame);
     if (selectedTrack.isPlaying) {
-      this.audio.play();
+      widget.play();
     } else {
-      this.audio.pause();
+      widget.pause();
     }
   }
 
@@ -40,10 +34,15 @@ class Player extends Component {
 
     return (
       <Container>
-        <Wrapper>
-          <Image src={track.artwork_url} />
-        </Wrapper>
-        <audio ref={(c) => { this.audio = c; }} src={`${track.stream_url}?client_id=e582b63d83a5fb2997d1dbf2f62705da`} id="audio" />
+        <iframe
+          width="100%"
+          height="150"
+          scrolling="no"
+          frameBorder="no"
+          onLoad={() => (console.log('Loaded'))}
+          ref={(c) => { this.soundCoudFrame = c; }}
+          src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${track.id}&amp;color=0066cc&auto_play=true`}
+        />
       </Container>
     );
   }
