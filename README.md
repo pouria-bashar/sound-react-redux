@@ -1,1 +1,4 @@
-# Raiss React Boilerplate
+# sound-react-redux
+
+## Installation
+    npm install
