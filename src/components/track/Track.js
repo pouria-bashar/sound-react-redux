@@ -37,8 +37,8 @@ const Overlay = styles.div`
   transition: opacity 0.3s ease;
   display: block;
   visibility: visible;
-  opacity: 0;
-  background-color: rgba(20, 27, 32, 0.9);
+  opacity: ${props => props.showOverlay ? 1 : 0};
+  background-color: rgba(0, 0, 0, 0.61);
   &:hover{
     opacity: 1;
   }
@@ -67,23 +67,18 @@ class Track extends Component {
     track: PropTypes.object.isRequired,
     onPlayClick: PropTypes.func.isRequired,
     onPauseClick: PropTypes.func.isRequired,
-  }
-  state = {
-    isPaused: false,
+    isPlaying: PropTypes.bool.isRequired,
   }
   handlePlayClick() {
     const { track } = this.props;
     this.props.onPlayClick(track);
-    this.setState({ isPaused: true });
   }
   handlePauseClick() {
     this.props.onPauseClick();
-    this.setState({ isPaused: false });
   }
 
   render() {
-    const { track } = this.props;
-    const { isPaused } = this.state;
+    const { track, isPlaying } = this.props;
     return (
       <Card>
         <Header>
@@ -91,8 +86,11 @@ class Track extends Component {
             src={track.artwork_url || 'http://static.wixstatic.com/media/66f565_accf5eba3a454753965146f53e83ae4a.png_256'}
             alt="Smiley face"
           />
-          <Overlay>
-            <OverlayButton onClick={isPaused ? ::this.handlePauseClick : ::this.handlePlayClick}><p>{isPaused ? 'Pause' : 'Play'}</p></OverlayButton>
+          <Overlay showOverlay={isPlaying}>
+            <OverlayButton
+              onClick={isPlaying ? ::this.handlePauseClick : ::this.handlePlayClick}>
+              <p>{isPlaying ? 'Pause' : 'Play'}</p>
+            </OverlayButton>
           </Overlay>
           <Link href={track.artwork_url}>{track.title}</Link>
         </Header>

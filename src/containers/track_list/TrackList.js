@@ -31,7 +31,7 @@ class TrackList extends Component {
     this.props.selectedTrackIsPalying(false);
   }
   render() {
-    const { tracks: { items } } = this.props;
+    const { tracks: { items }, selectedTrack } = this.props;
     if (!items) return null;
     if (items.length < 1) {
       return (
@@ -49,13 +49,14 @@ class TrackList extends Component {
               key={index}
               onPlayClick={::this.handlePlayClick}
               onPauseClick={::this.handlePauseClick}
+              isPlaying={selectedTrack.isPlaying && selectedTrack.track.id === item.id}
             />))
         }
       </Container>
     );
   }
 }
-function mapStateToProps({ tracks }) {
-  return { tracks };
+function mapStateToProps({ tracks, selectedTrack }) {
+  return { tracks, selectedTrack };
 }
 export default connect(mapStateToProps, { getTracks, setSelectedTrack, selectedTrackIsPalying })(TrackList);
