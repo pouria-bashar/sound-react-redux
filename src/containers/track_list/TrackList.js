@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getTracks, setSelectedTrack } from 'actions';
+import { getTracks, setSelectedTrack, selectedTrackIsPalying } from 'actions';
 import styles from 'styled-components';
 import { Track } from 'components';
 
@@ -17,14 +17,18 @@ class TrackList extends Component {
   static propTypes = {
     tracks: PropTypes.object.isRequired,
     setSelectedTrack: PropTypes.func.isRequired,
+    selectedTrackIsPalying: PropTypes.func.isRequired,
     getTracks: PropTypes.func.isRequired,
   }
-
   componentDidMount() {
     this.props.getTracks();
   }
-  handleClick(id) {
-    this.props.setSelectedTrack(id);
+  handlePlayClick(track) {
+    this.props.setSelectedTrack(track);
+    this.props.selectedTrackIsPalying(true);
+  }
+  handlePauseClick() {
+    this.props.selectedTrackIsPalying(false);
   }
   render() {
     const { tracks: { items } } = this.props;
@@ -39,7 +43,13 @@ class TrackList extends Component {
     return (
       <Container>
         {
-          items.map((item, index) => <Track track={item} key={index} onClick={::this.handleClick} />)
+          items.map((item, index) => (
+            <Track
+              track={item}
+              key={index}
+              onPlayClick={::this.handlePlayClick}
+              onPauseClick={::this.handlePauseClick}
+            />))
         }
       </Container>
     );
@@ -48,4 +58,4 @@ class TrackList extends Component {
 function mapStateToProps({ tracks }) {
   return { tracks };
 }
-export default connect(mapStateToProps, { getTracks, setSelectedTrack })(TrackList);
+export default connect(mapStateToProps, { getTracks, setSelectedTrack, selectedTrackIsPalying })(TrackList);

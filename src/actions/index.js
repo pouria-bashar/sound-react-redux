@@ -1,1 +1,1 @@
-export { getTracks, setSelectedTrack } from './SoundCloudActions';
+export { getTracks, setSelectedTrack, selectedTrackIsPalying } from './playerActions';

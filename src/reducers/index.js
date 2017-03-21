@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import reducerTracks from './reducerTracks';
-import reducerSelectedTrack from './reducerSelectedTrack';
+import tracks from './tracks';
+import selectedTrack from './selectedTrack';
 
 export default combineReducers({
-  tracks: reducerTracks,
-  selectedTrack: reducerSelectedTrack,
+  tracks,
+  selectedTrack,
 });
