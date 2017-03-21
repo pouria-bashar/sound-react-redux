@@ -99,6 +99,7 @@ class Track extends Component {
 
   render() {
     const { track, isPlaying } = this.props;
+    console.log(track);
     return (
       <Card>
         <Header>
@@ -113,7 +114,7 @@ class Track extends Component {
               <p>{isPlaying ? 'Pause' : 'Play'}</p>
             </OverlayButton>
           </Overlay>
-          <Link href={track.artwork_url}>{track.title}</Link>
+          <Link href={track.permalink_url}>{track.title}</Link>
         </Header>
         <Divider />
       </Card>
