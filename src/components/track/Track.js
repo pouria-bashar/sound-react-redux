@@ -99,7 +99,7 @@ class Track extends Component {
 
   render() {
     const { track, isPlaying } = this.props;
-    console.log(track);
+
     return (
       <Card>
         <Header>
