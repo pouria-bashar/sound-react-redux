@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   items: [],
   error: '',
   isLoading: false,
+  hasFetched: false,
 };
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -22,6 +23,7 @@ export default function (state = INITIAL_STATE, action) {
         isLoading: false,
         error: '',
         items: action.payload,
+        hasFetched: true,
       };
     case GET_TRACKS_FAILED:
       return {
@@ -29,6 +31,7 @@ export default function (state = INITIAL_STATE, action) {
         isLoading: false,
         error: action.error,
         items: [],
+        hasFetched: true,
       };
     default: return state;
   }

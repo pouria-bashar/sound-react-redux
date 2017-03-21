@@ -5,7 +5,6 @@ import styles from 'styled-components';
 import { Track } from 'components';
 
 const Container = styles.div`
-
 `;
 const NotFoundContainer = styles.div`
   color: tomato;
@@ -15,7 +14,7 @@ const Row = styles.div`
   flex-wrap: wrap;
   justify-content: space-between;
   &:last-child{
-    
+
   }
 `;
 
@@ -38,9 +37,9 @@ class TrackList extends Component {
     this.props.selectedTrackIsPalying(false);
   }
   render() {
-    const { tracks: { items }, selectedTrack } = this.props;
+    const { tracks: { items, hasFetched }, selectedTrack } = this.props;
     if (!items) return null;
-    if (items.length < 1) {
+    if (hasFetched && items.length < 1) {
       return (
         <NotFoundContainer>
           Could not find any matching results

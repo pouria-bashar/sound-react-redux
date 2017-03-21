@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from 'styled-components';
 import { connect } from 'react-redux';
 import { getTracks } from 'actions';
-import { Dimmer, Loader } from 'semantic-ui-react'
+import { Dimmer, Loader, Button, Input } from 'semantic-ui-react';
 
 const Container = styles.form`
   margin: 40px auto;
   text-align:center;
 `;
-const TextBox = styles.input`
-  width: 40%;
-`;
-const SearchButton = styles.button`
-    margin-Left: 10px;
-`;
+
 class SearchBox extends Component {
+  static propTypes = {
+    tracks: PropTypes.object.isRequired,
+  }
   handlesubmit(event) {
     event.preventDefault();
     if (this.state.searchTerm === '') return;
@@ -35,11 +33,14 @@ class SearchBox extends Component {
     const { tracks } = this.props;
     return (
       <Container onSubmit={::this.handlesubmit}>
-        <TextBox
+        <Input
+          style={{ width: '39%', marginRight: '10px' }}
+          icon="search"
+          placeholder="Search..."
           name="searchTerm"
           onChange={::this.handleChange}
         />
-        <SearchButton type="submit">Search</SearchButton>
+        <Button style={{ width: '10%' }} type="submit" primary>Search</Button>
         {tracks.isLoading && ::this.renderLoading()}
       </Container>
     );

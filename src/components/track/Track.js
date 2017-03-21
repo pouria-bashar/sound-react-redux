@@ -8,9 +8,11 @@ const Card = styles.div`
   min-width: 200px;
   padding: 10px;
   margin-bottom: 20px;
-  border: solid 1px;
+  box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+  border: 1px solid rgba(34,36,38,.15);
+  border-radius: .28571429rem;
   &:last-child {
-    border-right: solid 1px;
+    border-right: 1px solid rgba(34,36,38,.15);
   }
 `;
 const Header = styles.div`

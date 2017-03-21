@@ -2,13 +2,14 @@ import React, { Component, PropTypes } from 'react';
 import styles from 'styled-components';
 import { selectedTrackIsPalying } from 'actions';
 import { connect } from 'react-redux';
+import { isEmpty } from 'lodash';
 
 const Container = styles.div`
   position: fixed;
   bottom:0;
   width: 100%;
-  height: 77px;
-  background-color: rgb(113, 111, 111);
+  height: 100px;
+  background: #1b1c1d;
 `;
 const Wrapper = styles.div`
   margin: 0 auto;
@@ -35,7 +36,8 @@ class Player extends Component {
 
   render() {
     const { selectedTrack: { track } } = this.props;
-    if (!track) return null;
+    if (isEmpty(track)) return null;
+
     return (
       <Container>
         <Wrapper>
@@ -47,6 +49,6 @@ class Player extends Component {
   }
 }
 function mapStateToProps({ selectedTrack }) {
-  return { selectedTrack }
+  return { selectedTrack };
 }
 export default connect(mapStateToProps, { selectedTrackIsPalying })(Player);
